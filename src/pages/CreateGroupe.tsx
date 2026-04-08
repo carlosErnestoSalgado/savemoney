@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import type Group from "../interfaces/interfaces"
 
 interface CrearGrupoProps {
   onCerrar: () => void;
-  onCrear: (nombre: string, foto: File | null) => void;
+  onCrear: (group: Group) => void;
 }
 
 export default function CrearGrupo({ onCerrar, onCrear }: CrearGrupoProps) {
@@ -12,7 +13,8 @@ export default function CrearGrupo({ onCerrar, onCrear }: CrearGrupoProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (nombre.trim()) {
-      onCrear(nombre, foto);
+      onCrear({ nombre, foto, descripcion: undefined });
+      onCerrar();
     }
   };
 

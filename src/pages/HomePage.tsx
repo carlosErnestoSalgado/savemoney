@@ -1,6 +1,7 @@
 // pages/HomePage.tsx
 import CrearGrupo from "./CreateGroupe";
 import { useState } from "react";
+import saveGroup from "../storage/storage";
 // Definimos un objeto de estilos en línea para mantenerlo ordenado y usar tus variables
 const styles = {
   // 1. Contenedor de la página de inicio (para ocupar todo el alto visible)
@@ -77,32 +78,11 @@ export default function Home() {
   const openForm = () => SetShowFormulario(true);
   const closeForm = () => SetShowFormulario(false);
 
-  const manejarCreacionFinal = (nombre: string, foto: File | null) => {
-  // 1. Creamos el objeto del nuevo grupo
-  const nuevoGrupo = {
-    id: Date.now(), // Un ID único usando el tiempo actual
-    nombre: nombre,
-    // Nota: Guardar archivos (File) en LocalStorage es complejo, 
-    // por ahora guardaremos un placeholder o un string.
-    foto: foto ? "📷 Foto subida" : "📁 Sin foto" 
-  };
-
-    // 2. Traemos los grupos que ya existan en el storage
-    const gruposGuardados = localStorage.getItem('mis-grupos');
-    const gruposActuales = gruposGuardados ? JSON.parse(gruposGuardados) : [];
-
-    // 3. Añadimos el nuevo y guardamos
-    const nuevaLista = [...gruposActuales, nuevoGrupo];
-    localStorage.setItem('mis-grupos', JSON.stringify(nuevaLista));
-
-  
-    closeForm();
-  };
 
   if (showFormulario){
     return(
       <>
-      <CrearGrupo onCerrar={closeForm} onCrear={manejarCreacionFinal}/>
+      <CrearGrupo onCerrar={closeForm} onCrear={saveGroup}/>
       </>
     );
     }
