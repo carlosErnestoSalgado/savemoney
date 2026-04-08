@@ -1,0 +1,60 @@
+/* Reset básico para que ocupe toda la pantalla */
+#root {
+  display: flex;
+  justify-content: center;
+  background-color: #f0f2f5; /* Color de fondo fuera del "teléfono" */
+  min-height: 100vh;
+}
+
+/* El contenedor que parece un teléfono */
+.mobile-container {
+  width: 100%;
+  max-width: 450px; /* Ancho máximo típico de móvil */
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Área donde se ven las páginas */
+.content {
+  flex: 1;
+  padding: 20px;
+  padding-bottom: 80px; /* Espacio para que el nav no tape el contenido */
+  overflow-y: auto;
+}
+
+/* Barra de navegación inferior */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 450px; /* Importante que coincida con el contenedor */
+  height: 70px;
+  background-color: #ffffff;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Estilo de los links de navegación */
+.nav-link {
+  text-decoration: none;
+  color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.nav-link small {
+  font-size: 0.7rem;
+  margin-top: 4px;
+}
